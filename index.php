@@ -575,7 +575,7 @@ function spot_woo_shortcode() {
     else { ?>
         <div id="sp_courses">
             <?php foreach (wc_get_orders(['customer' => get_current_user_id()]) as $ord) {
-                if (@$ord->get_meta('_spotplayer_data')['_id']) {
+                if (!empty($ord->get_meta('_spotplayer_data')['_id'])) {
                     foreach (spot_woo_order_items($ord, true) as $p) { ?>
                         <a href=<?= "?spo={$ord->get_id()}&spp={$p->get_id()}&spc={$p->get_meta('_spotplayer_course')}" ?>><?= $p->get_image() ?><h2><?= $p->get_name() ?></h2></a>
                     <?php }
