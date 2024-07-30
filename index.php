@@ -1,6 +1,6 @@
 <?php /**
  * Plugin Name: اسپات پلیر
- * Version: 17.0.1
+ * Version: 17.0.2
  * Description:  ابتدا در تنظیمات اسپات پلیر کلید API و کد ساخت لایسنس و سپس شناسه دوره‌های هر محصول را وارد نمایید.
  * Author: SpotPlayer.ir
  * Author URI: https://spotplayer.ir/
@@ -575,7 +575,8 @@ function spot_woo_shortcode() {
     else { ?>
         <div id="sp_courses">
             <?php foreach (wc_get_orders(['customer' => get_current_user_id()]) as $ord) {
-                if (!empty($ord->get_meta('_spotplayer_data')['_id'])) {
+                //if (!empty($ord->get_meta('_spotplayer_data')['_id'])) {
+                if (!empty($ord->get_meta('_spotplayer_data'))) {
                     foreach (spot_woo_order_items($ord, true) as $p) { ?>
                         <a href=<?= "?spo={$ord->get_id()}&spp={$p->get_id()}&spc={$p->get_meta('_spotplayer_course')}" ?>><?= $p->get_image() ?><h2><?= $p->get_name() ?></h2></a>
                     <?php }
